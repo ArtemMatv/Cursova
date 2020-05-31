@@ -46,6 +46,7 @@ namespace DAL.Fluent_API_Configuration
 
             builder.HasData(new User()
             {
+                Id = 1,
                 UserName = "kvazar2569",
                 PasswordHash = "cg/+jWvRrsDXTWAvy5oCkTP1K+S/Uti6niwDI0nSsRE=",
                 Email = "kvazar2569@gmail.com",

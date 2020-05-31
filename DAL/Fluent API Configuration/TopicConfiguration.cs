@@ -18,6 +18,7 @@ namespace DAL.Fluent_API_Configuration
 
             builder.HasData(new Topic()
             {
+                Id = 1,
                 Name = "News"
             });
         }

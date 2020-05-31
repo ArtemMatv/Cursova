@@ -12,9 +12,27 @@ namespace DAL
         public DbSet<Post> Posts { get; set; }
         public DbSet<Comment> Comments { get; set; }
 
-        public ForumContext(DbContextOptions options)
+        public ForumContext(DbContextOptions<ForumContext> options)
             :base(options)
-        { }
+        {
+            Database.EnsureCreated();
+        }
+
+
+
+
+        public ForumContext()
+        {
+            Database.EnsureCreated();
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=forumDatabase;Trusted_Connection=True;");
+        }
+
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

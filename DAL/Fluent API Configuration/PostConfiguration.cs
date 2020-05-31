@@ -35,6 +35,7 @@ namespace DAL.Fluent_API_Configuration
 
             builder.HasData(new Post()
             {
+                Id = 1,
                 Title = "Рівень доступу до даних створено",
                 Message = "Перший рівень форуму було щойно створено",
                 DateCreated = DateTime.Now,

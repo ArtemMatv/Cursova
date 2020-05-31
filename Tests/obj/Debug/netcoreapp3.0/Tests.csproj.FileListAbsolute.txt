@@ -124,3 +124,9 @@ C:\Users\Артем\source\repos\Cursova\Tests\bin\Debug\netcoreapp3.0\runtimes\
 C:\Users\Артем\source\repos\Cursova\Tests\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Артем\source\repos\Cursova\Tests\bin\Debug\netcoreapp3.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Артем\source\repos\Cursova\Tests\bin\Debug\netcoreapp3.0\DAL.dll
+C:\Users\Артем\source\repos\Cursova\Tests\bin\Debug\netcoreapp3.0\Tests.pdb
+C:\Users\Артем\source\repos\Cursova\Tests\bin\Debug\netcoreapp3.0\Castle.Core.dll
+C:\Users\Артем\source\repos\Cursova\Tests\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Proxies.dll
+C:\Users\Артем\source\repos\Cursova\Tests\bin\Debug\netcoreapp3.0\DAL.pdb
+C:\Users\Артем\source\repos\Cursova\Tests\obj\Debug\netcoreapp3.0\Tests.dll
+C:\Users\Артем\source\repos\Cursova\Tests\obj\Debug\netcoreapp3.0\Tests.pdb

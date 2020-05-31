@@ -1,6 +1,5 @@
 using DAL;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+using DAL.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework.Internal;
 
@@ -10,10 +9,19 @@ namespace Tests
     public class UnitTest1
     {
         [TestMethod]
-        public void TestDatabase(IServiceCollection s)
+        public void TestDatabase()
         {
-            s.AddDbContext<ForumContext>(options => 
-                    options.UseLazyLoadingProxies().UseSqlServer(""));
+            ForumContext context = new ForumContext();
+
+            User u = context.Users.Find(1);
+            Post p = context.Posts.Find(1);
+            Role r = context.Roles.Find(1);
+            Topic t = context.Topics.Find(1);
+
+            Assert.AreEqual(u.RoleId, r.Id);
+            Assert.AreEqual(p.UserId, u.Id);
+            Assert.AreEqual(p.Topic.Id, t.Id);
+            Assert.AreEqual(r.Name, "Admin");
         }
     }
 }
