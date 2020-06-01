@@ -15,8 +15,8 @@ namespace BLL.Interfaces
         Task<UserModel> Authenticate(AuthenticateModel model);
         Task DeleteAccount(string username);
         Task UpdateAccount(UserModel user);
-        Task BanUser(string username);
-        Task SilenceUser(string username);
+        Task BanUser(string username, uint days);
+        Task SilenceUser(string username, uint days);
         Task ChangeUserRole(string username, string role);
     }
 }

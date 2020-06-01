@@ -70,14 +70,32 @@ namespace BLL.Services
             return _mapper.Map<UserModel>(user);
         }
 
-        public async Task BanUser(string username)
+        public async Task BanUser(string username, uint days)
         {
-            throw new NotImplementedException();
+            var user = await _unitOfWork.TRepository.GetAsync(u => u.UserName == username).ConfigureAwait(false);
+
+            if (user == null)
+                throw new DataException($"User {username} does not exist!");
+
+            DateTime now = DateTime.Now;
+            user.BannedTo = new DateTime(now.Year, now.Month, now.Day + (int)days);
+
+            _unitOfWork.TRepository.Update(user);
+            await _unitOfWork.Commit().ConfigureAwait(false);
         }
 
         public async Task ChangeUserRole(string username, string role)
         {
-            throw new NotImplementedException();
+            var user = await _unitOfWork.TRepository.GetAsync(u => u.UserName == username).ConfigureAwait(false);
+
+            if (user == null)
+                throw new DataException($"User {username} does not exist!");
+
+            user.RoleName = role;
+            user.UserRole = await _unitOfWork.URepository.GetAsync(r => r.Name == role).ConfigureAwait(false);
+
+            _unitOfWork.TRepository.Update(user);
+            await _unitOfWork.Commit().ConfigureAwait(false);
         }
 
         public async Task DeleteAccount(string username)
@@ -104,7 +122,6 @@ namespace BLL.Services
         {
             var user = await _unitOfWork.TRepository.GetAsync(id).ConfigureAwait(false);
             return _mapper.Map<UserModel>(user).WithoutPassword();
-            
         }
 
         public async Task<UserModel> Register(RegisterModel model)
@@ -156,9 +173,18 @@ namespace BLL.Services
             return tokenHandler.WriteToken(token);
         }
 
-        public async Task SilenceUser(string username)
+        public async Task SilenceUser(string username, uint days)
         {
-            throw new NotImplementedException();
+            var user = await _unitOfWork.TRepository.GetAsync(u => u.UserName == username).ConfigureAwait(false);
+
+            if (user == null)
+                throw new DataException($"User {username} does not exist!");
+
+            DateTime now = DateTime.Now;
+            user.SilencedTo = new DateTime(now.Year, now.Month, now.Day + (int)days);
+
+            _unitOfWork.TRepository.Update(user);
+            await _unitOfWork.Commit().ConfigureAwait(false);
         }
 
         public async Task UpdateAccount(UserModel user)
