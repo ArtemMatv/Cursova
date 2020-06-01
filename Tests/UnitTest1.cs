@@ -17,7 +17,7 @@ namespace Tests
             using ForumContext context = new ForumContext();
             User u = context.Users.Find(1);
             Post p = context.Posts.Find(1);
-            Role r = context.Roles.Find(1);
+            Role r = context.Roles.Find("Admin");
             Topic t = context.Topics.Find(1);
 
             Assert.AreEqual(u.RoleName, r.Name);

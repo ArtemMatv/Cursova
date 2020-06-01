@@ -13,6 +13,10 @@ namespace DAL.Fluent_API_Configuration
             builder.HasData(new Role()
             {
                 Name = "Admin"
+            },
+            new Role()
+            {
+                Name = "User"
             });
         }
     }
