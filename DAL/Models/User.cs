@@ -23,9 +23,9 @@ namespace DAL.Models
         public DateTime? SilencedTo { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
-        public int RoleId { get; set; }
-        [ForeignKey("RoleId")]
-        public virtual Role Role { get; set; }
+        public string RoleName { get; set; }
+        [ForeignKey("RoleName")]
+        public virtual Role UserRole { get; set; }
         public string Token { get; set; }
     }
 

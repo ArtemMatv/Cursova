@@ -38,10 +38,10 @@ namespace DAL.Fluent_API_Configuration
             builder.Property(u => u.IsSilenced)
                 .IsRequired();
 
-            builder.Property(u => u.RoleId)
+            builder.Property(u => u.RoleName)
                 .IsRequired();
 
-            builder.HasOne(u => u.Role);
+            builder.HasOne(u => u.UserRole);
 
 
             builder.HasData(new User()
@@ -55,7 +55,7 @@ namespace DAL.Fluent_API_Configuration
                 AvatarPath = "",
                 IsBanned = false,
                 IsSilenced = false,
-                RoleId = 1
+                RoleName = "Admin"
             });
         }
     }

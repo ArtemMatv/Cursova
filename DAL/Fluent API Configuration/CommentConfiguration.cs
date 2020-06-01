@@ -21,7 +21,7 @@ namespace DAL.Fluent_API_Configuration
 
             builder.HasOne(c => c.User)
                 .WithMany(u => u.Comments)
-                .OnDelete(DeleteBehavior.ClientNoAction);
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.Property(c => c.PostId)
                 .IsRequired();

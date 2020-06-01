@@ -14,14 +14,13 @@ namespace Tests
         [TestMethod]
         public void TestDatabase()
         {
-            ForumContext context = new ForumContext();
-
+            using ForumContext context = new ForumContext();
             User u = context.Users.Find(1);
             Post p = context.Posts.Find(1);
             Role r = context.Roles.Find(1);
             Topic t = context.Topics.Find(1);
 
-            Assert.AreEqual(u.RoleId, r.Id);
+            Assert.AreEqual(u.RoleName, r.Name);
             Assert.AreEqual(p.UserId, u.Id);
             Assert.AreEqual(p.Topic.Id, t.Id);
             Assert.AreEqual(r.Name, "Admin");
@@ -32,7 +31,7 @@ namespace Tests
         {
             ForumContext context = new ForumContext();
 
-            IRepository<User> repUser = new Repository<User>(context);
+            using IRepository<User> repUser = new Repository<User>(context);
             IRepository<Post> repPost = new Repository<Post>(context);
             CheckRepository(repUser, repPost);
         }
@@ -58,8 +57,10 @@ namespace Tests
         {
             ForumContext context = new ForumContext();
 
-            IUnitOfWork<Topic, Post> unit = new UnitOfWork<Topic, Post>(context);
-            CheckUnit(unit);
+            using (IUnitOfWork<Topic, Post> unit = new UnitOfWork<Topic, Post>(context))
+            {
+                CheckUnit(unit);
+            }
         }
 
         private static async Task CheckUnit(IUnitOfWork<Topic, Post> unit)

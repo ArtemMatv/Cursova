@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(ForumContext))]
-    [Migration("20200531110950_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200601084502_InitialCreated")]
+    partial class InitialCreated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -89,7 +89,7 @@ namespace DAL.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2020, 5, 31, 14, 9, 41, 749, DateTimeKind.Local).AddTicks(4659),
+                            DateCreated = new DateTime(2020, 6, 1, 11, 44, 59, 922, DateTimeKind.Local).AddTicks(1211),
                             Message = "Перший рівень форуму було щойно створено",
                             Title = "Рівень доступу до даних створено",
                             TopicId = 1,
@@ -99,23 +99,16 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Models.Role", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Name");
 
                     b.ToTable("Roles");
 
                     b.HasData(
                         new
                         {
-                            Id = 1,
                             Name = "Admin"
                         });
                 });
@@ -175,8 +168,9 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
+                    b.Property<string>("RoleName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("SilencedTo")
                         .HasColumnType("datetime2");
@@ -192,7 +186,7 @@ namespace DAL.Migrations
 
                     b.HasAlternateKey("UserName");
 
-                    b.HasIndex("RoleId");
+                    b.HasIndex("RoleName");
 
                     b.ToTable("Users");
 
@@ -207,7 +201,7 @@ namespace DAL.Migrations
                             IsBanned = false,
                             IsSilenced = false,
                             PasswordHash = "cg/+jWvRrsDXTWAvy5oCkTP1K+S/Uti6niwDI0nSsRE=",
-                            RoleId = 1,
+                            RoleName = "Admin",
                             UserName = "kvazar2569"
                         });
                 });
@@ -223,7 +217,7 @@ namespace DAL.Migrations
                     b.HasOne("DAL.Models.User", "User")
                         .WithMany("Comments")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.ClientNoAction)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -244,9 +238,9 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Models.User", b =>
                 {
-                    b.HasOne("DAL.Models.Role", "Role")
+                    b.HasOne("DAL.Models.Role", "UserRole")
                         .WithMany()
-                        .HasForeignKey("RoleId")
+                        .HasForeignKey("RoleName")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

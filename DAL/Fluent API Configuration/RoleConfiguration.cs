@@ -8,14 +8,10 @@ namespace DAL.Fluent_API_Configuration
     {
         public void Configure(EntityTypeBuilder<Role> builder)
         {
-            builder.HasKey(r => r.Id);
-
-            builder.Property(r => r.Name)
-                .IsRequired();
+            builder.HasKey(r => r.Name);
 
             builder.HasData(new Role()
             {
-                Id = 1,
                 Name = "Admin"
             });
         }
