@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BLL.Models.FormsToFill
+namespace BLL.Models.Forms
 {
     public class AuthenticateModel
     {

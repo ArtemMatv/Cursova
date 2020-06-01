@@ -43,7 +43,7 @@ namespace Tests
 
             foreach (var item in u)
             {
-                Assert.AreEqual(item.IsBanned, false);
+                Assert.AreEqual(item.BannedTo, null);
                 Assert.AreNotEqual(item.UserName, null);
             }
 
@@ -57,15 +57,14 @@ namespace Tests
         {
             ForumContext context = new ForumContext();
 
-            using (IUnitOfWork<Topic, Post> unit = new UnitOfWork<Topic, Post>(context))
-            {
-                CheckUnit(unit);
-            }
+            using IUnitOfWork<Topic, Post> unit = new UnitOfWork<Topic, Post>(context);
+            CheckUnit(unit);
         }
 
         private static async Task CheckUnit(IUnitOfWork<Topic, Post> unit)
         {
             Assert.AreEqual((await unit.TRepository.GetAsync(1)).Id, (await unit.URepository.GetAsync(1)).TopicId);
         }
+
     }
 }

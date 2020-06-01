@@ -17,8 +17,6 @@ namespace DAL.Models
         public string Gender { get; set; }
         public int? Age { get; set; }
         public string AvatarPath { get; set; }
-        public bool IsBanned { get; set; }
-        public bool IsSilenced { get; set; }
         public DateTime? BannedTo { get; set; }
         public DateTime? SilencedTo { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }

@@ -30,12 +30,7 @@ namespace DAL.Fluent_API_Configuration
                 .WithOne(p => p.User);
 
             builder.HasMany(u => u.Posts)
-               .WithOne(p => p.User);
-
-            builder.Property(u => u.IsBanned)
-                .IsRequired();
-
-            builder.Property(u => u.IsSilenced)
+               .WithOne(p => p.User)
                 .IsRequired();
 
             builder.Property(u => u.RoleName)
@@ -53,8 +48,6 @@ namespace DAL.Fluent_API_Configuration
                 Age = DateTime.Now.Year - 2001,
                 Gender = "Male",
                 AvatarPath = "",
-                IsBanned = false,
-                IsSilenced = false,
                 RoleName = "Admin"
             });
         }

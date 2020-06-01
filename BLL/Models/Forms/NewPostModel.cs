@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace BLL.Models.FormsToFill
+namespace BLL.Models.Forms
 {
     public class NewPostModel
     {

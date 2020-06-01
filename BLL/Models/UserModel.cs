@@ -18,8 +18,6 @@ namespace BLL.Models
         public virtual ICollection<CommentModel> Comments { get; set; }
         public virtual ICollection<PostModel> Posts { get; set; }
         public string RoleName { get; set; }
-        public bool CapableToBan { get; set; }
-        public bool CapableToSilence { get; set; }
         public string Token { get; set; }
     }
 }
