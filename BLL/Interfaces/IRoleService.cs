@@ -11,6 +11,6 @@ namespace BLL.Interfaces
         Task CreateRole(string name);
 
         Task DeleteRole(string name);
-        Task<IEnumerable<Role>> GetAllRoles();
+        Task<IEnumerable<string>> GetAllRoles();
     }
 }

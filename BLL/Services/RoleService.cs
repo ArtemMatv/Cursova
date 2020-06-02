@@ -28,9 +28,17 @@ namespace BLL.Services
             _repository.Remove(await _repository.GetAsync(r => r.Name == name));
         }
 
-        public async Task<IEnumerable<Role>> GetAllRoles()
+        public async Task<IEnumerable<string>> GetAllRoles()
         {
-            return await _repository.GetAllAsync();
+            var roles = await _repository.GetAllAsync();
+            List<string> result = new List<string>();
+
+            foreach(var item in roles)
+            {
+                result.Add(item.Name);
+            }
+
+            return result;
         }
 
         public void Dispose()
