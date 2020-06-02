@@ -1,14 +1,14 @@
-﻿using BLL.Interfaces;
+﻿using BLL.Exceptions;
+using BLL.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("4tZCduV.7-nlTy6x/[controller]")]
     [ApiController]
     public class RolesController : ControllerBase, IDisposable
     {
@@ -21,7 +21,6 @@ namespace WebAPI.Controllers
             _disposed = false;
         }
 
-        [Authorize]
         [HttpGet]
         public async Task<IEnumerable<string>> GetRoles()
         {
@@ -30,16 +29,27 @@ namespace WebAPI.Controllers
 
         [Authorize]
         [HttpPost("{name}")]
-        public async Task CreateRole(string name)
+        public async Task<IActionResult> CreateRole(string name)
         {
             await _roleService.CreateRole(name);
+
+            return Ok();
         }
 
         [Authorize]
         [HttpDelete("{name}")]
-        public async Task DeleteRole(string name)
+        public async Task<IActionResult> DeleteRole(string name)
         {
-            await _roleService.DeleteRole(name);
+            try
+            {
+                await _roleService.DeleteRole(name);
+            }
+            catch(DataException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return Ok();
         }
 
         public void Dispose()

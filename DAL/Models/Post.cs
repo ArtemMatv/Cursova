@@ -22,7 +22,7 @@ namespace DAL.Models
         public int TopicId { get; set; }
         [ForeignKey("TopicId")]
         [JsonIgnore]
-        public Topic Topic { get; set; }
+        public virtual Topic Topic { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
     }
 }

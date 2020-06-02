@@ -1,4 +1,5 @@
-﻿using BLL.Interfaces;
+﻿using BLL.Exceptions;
+using BLL.Interfaces;
 using DAL.Interfaces;
 using DAL.Models;
 using System;
@@ -21,11 +22,19 @@ namespace BLL.Services
         public async Task CreateRole(string name)
         {
             await _repository.InsertAsync(new Role() { Name = name });
+            await _repository.SaveChangesAsync();
         }
 
         public async Task DeleteRole(string name)
         {
-            _repository.Remove(await _repository.GetAsync(r => r.Name == name));
+            var role = await _repository.GetAsync(r => r.Name == name);
+
+            if (role == null)
+                throw new DataException($"There is no \"{name}\" role!");
+
+            _repository.Remove(role);
+
+            await _repository.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<string>> GetAllRoles()

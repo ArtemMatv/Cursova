@@ -12,11 +12,11 @@ namespace WebAPI.Controllers
 {
     [Route("4tZCduV.7-nlTy6x/[controller]")]
     [ApiController]
-    public class TopicController : ControllerBase, IDisposable
+    public class TopicsController : ControllerBase, IDisposable
     {
         private readonly ITopicService _topicService;
         private bool _disposed;
-        public TopicController(ITopicService service)
+        public TopicsController(ITopicService service)
         {
             _topicService = service;
             _disposed = false;
@@ -48,9 +48,9 @@ namespace WebAPI.Controllers
         // POST: api/Topics
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPost]
+        [HttpPost("{name}")]
         [Authorize]
-        public async Task<ActionResult<TopicModel>> PostTopic([FromBody]string name)
+        public async Task<ActionResult<TopicModel>> PostTopic(string name)
         {
             if (name == "")
                 return BadRequest();

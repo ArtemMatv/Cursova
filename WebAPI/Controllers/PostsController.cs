@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("4tZCduV.7-nlTy6x/[controller]")]
     [ApiController]
     public class PostsController : ControllerBase, IDisposable
     {
