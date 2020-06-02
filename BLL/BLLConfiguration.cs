@@ -51,13 +51,6 @@ namespace BLL
 
         private static void ConfigureTransient(IServiceCollection services)
         {
-            services.AddTransient<IRepository<Role>, Repository<Role>>();
-            services.AddTransient<IRepository<Topic>, Repository<Topic>>();
-
-            services.AddTransient<IUnitOfWork<Comment, User>, UnitOfWork<Comment, User>>();
-            services.AddTransient<IUnitOfWork<User, Post>, UnitOfWork<User, Post>>();
-            services.AddTransient<IUnitOfWork<User, Role>, UnitOfWork<User, Role>>();
-
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ITopicService, TopicService>();
             services.AddTransient<IPostService, PostService>();
